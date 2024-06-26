@@ -1,0 +1,65 @@
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-10 order-xl-2 mb-5 mb-xl-0">
+
+    </div>
+    <div class="col-xl-10 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Formulaire de statut de l'order</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body bg-white">
+          <form *ngIf="!isSuccessful" (ngSubmit)="onSubmit()" [formGroup]="updateForm" novalidate>
+            <h6 class="heading-small text-muted mb-4">
+              Informations
+            </h6>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="name">Choisir Statut d'order</label>
+                  <div class="input-group input-group-alternative mb-3">
+                    <select class="form-control" formControlName="orderStatus" required>
+                      <option value="">select Statut</option>
+                      <option *ngFor="let cat of listStatus" [value]="cat.id">{{cat.label}}</option>
+                    </select>
+                  </div>
+                  <div class="alert-danger"
+                    *ngIf="updateForm.get('orderStatus').errors && updateForm.get('orderStatus').touched">
+                    <div *ngIf="updateForm.get('orderStatus').hasError('required')">
+                      Le Statut est obligatoire
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+
+
+
+
+
+            <!-- 9dimmm-->
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block" [disabled]="updateForm.invalid">Modifier</button>
+            </div>
+
+            <div class="alert alert-warning" *ngIf="submitted && !isSuccessful">
+              L'modification a échoué!<br />{{ errorMessage }}
+            </div>
+          </form>
+        </div>
+        <div class="alert alert-success" *ngIf="isSuccessful">
+          L'modification est réussie!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

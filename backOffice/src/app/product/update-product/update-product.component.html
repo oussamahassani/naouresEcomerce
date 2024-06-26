@@ -1,0 +1,118 @@
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-10 order-xl-2 mb-5 mb-xl-0">
+
+    </div>
+    <div class="col-xl-10 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Formulaire de modification Produits</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body bg-white">
+          <form *ngIf="!isSuccessful" (ngSubmit)="onSubmit()" [formGroup]="updateForm" novalidate>
+            <h6 class="heading-small text-muted mb-4">
+              Informations
+            </h6>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="name">Choisir category category</label>
+                  <div class="input-group input-group-alternative mb-3">
+                    <select class="form-control" formControlName="category" required>
+                      <option value="">select category</option>
+                      <option *ngFor="let cat of listCategory" [value]="cat.id">{{cat.name}}</option>
+                    </select>
+                  </div>
+                  <div class="alert-danger"
+                    *ngIf="updateForm.get('category').errors && updateForm.get('category').touched">
+                    <div *ngIf="updateForm.get('category').hasError('required')">
+                      Le nom de category est obligatoire
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="name">Nom de Produits</label>
+                  <div class="input-group input-group-alternative mb-3">
+                    <input type="text" class="form-control" formControlName="name" required minlength="3"
+                      maxlength="20" />
+                  </div>
+                  <div class="alert-danger" *ngIf="updateForm.get('name').errors && updateForm.get('name').touched">
+                    <div *ngIf="updateForm.get('name').hasError('required')">
+                      Le nom de Produit est obligatoire
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="imgUrl">Image de Produits</label>
+                  <div class="input-group input-group-alternative mb-3">
+                    <input type="text" class="form-control" formControlName="imgUrl" required minlength="3" />
+                  </div>
+                  <div class="alert-danger" *ngIf="updateForm.get('imgUrl').errors && updateForm.get('imgUrl').touched">
+                    <div *ngIf="updateForm.get('imgUrl').hasError('required')">
+                      L'image de Produit est obligatoire
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="price">price de Produits</label>
+                  <div class="input-group input-group-alternative mb-3">
+                    <input type="text" class="form-control" formControlName="price" required minlength="3" />
+                  </div>
+                  <div class="alert-danger" *ngIf="updateForm.get('price').errors && updateForm.get('price').touched">
+                    <div *ngIf="updateForm.get('price').hasError('required')">
+                      price de Produit est obligatoire
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="description">Description de Produits</label>
+                  <div class="input-group input-group-alternative mb-3">
+                    <input type="text" class="form-control" formControlName="description" required minlength="3" />
+                  </div>
+                  <div class="alert-danger"
+                    *ngIf="updateForm.get('description').errors && updateForm.get('description').touched">
+                    <div *ngIf="updateForm.get('description').hasError('required')">
+                      Le description de Produit est obligatoire
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+            <!-- 9dimmm-->
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block" [disabled]="updateForm.invalid">Modifier</button>
+            </div>
+
+            <div class="alert alert-warning" *ngIf="submitted && !isSuccessful">
+              L'modification a échoué!<br />{{ errorMessage }}
+            </div>
+          </form>
+        </div>
+        <div class="alert alert-success" *ngIf="isSuccessful">
+          L'modification est réussie!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

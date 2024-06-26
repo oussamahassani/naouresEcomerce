@@ -1,0 +1,56 @@
+<div class="container mt-4">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Image</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Description</th>
+              <th scope="col">Prix</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let pd of collection | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: count}">
+              <td>
+                <div class="media align-items-center">
+                  <a href="javascript:void(0)" class="avatar rounded-circle mr-3" *ngIf="pd.imgUrl">
+                    <img alt="Image du produit" src="{{urlImageProduit + pd.imgUrl}}" class="mr-3 rounded-circle"
+                      width="64" />
+
+                  </a>
+                </div>
+              </td>
+              <td>{{ pd.name }}</td>
+              <td>{{ pd.description }}</td>
+              <td>{{ pd.price }}</td>
+              <td>
+                <button (click)="Details(pd.id)" class="btn btn-info btn-sm mr-2"><i class="fas fa-info"></i></button>
+
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <pagination-controls previousLabel="Préc" nextLabel="Suiv" [responsive]="true"
+        (pageChange)="handlePageChange($event)"></pagination-controls>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="itemsPerPage">Éléments par page:</label>
+        <select class="form-control" id="itemsPerPage" (change)="handlePageSizeChange($event)">
+          <option *ngFor="let size of pageSizes">{{ size }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>

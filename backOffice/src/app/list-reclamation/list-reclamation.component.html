@@ -1,0 +1,46 @@
+<div class="reclamation-container">
+  <h1>Liste des Réclamations</h1>
+
+
+  <!-- Description Column -->
+
+
+  <!-- Date de Création Column -->
+
+
+  <!-- Treated Column -->
+  <div class="reclamation-container">
+
+
+    <mat-card>
+      <mat-card-content>
+        <div class="card">
+          <div class="card-body">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Description</th>
+                  <th scope="col">Date de Création</th>
+                  <th scope="col">Traité</th>
+                  <th scope="col">Temps Écoulé</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let element of reclamations">
+                  <td>{{ element.description }}</td>
+                  <td>{{ element.createdDate | date }}</td>
+                  <td>{{ element.treated ? 'Oui' : 'Non' }}</td>
+                  <td>{{ getTimeElapsed(element.createdDate) }}</td>
+                  <td *ngIf="!element.treated"> <i type="button" (click)="update(element)"
+                      class="fa fa-plus-circle "></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>

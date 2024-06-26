@@ -1,0 +1,94 @@
+<div>
+  <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="addNew()"
+        >
+          Add new Category
+        </button>
+</div>
+<div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by title"
+        [(ngModel)]="title"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchTitle()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+</div>
+<div class="list">
+    <div class="table-responsive">
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">name</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let pd of collection
+                | paginate
+                  : { itemsPerPage: pageSize,currentPage: page,
+                    totalItems: count}
+            "
+          >
+                  <div class="media">
+                    <img
+                      src="{{ urlImageCategory + pd.image }}"
+                      alt="Image placeholder"
+                      class="mr-3 rounded-circle"
+                      width="64"
+                    />
+                    <div class="media-body">
+                      <h6 class="mt-0">{{ pd.name }}</h6>
+                    </div>
+                  </div>
+
+            <td>
+              <button
+                (click)="update(pd.id)"
+                class="btn btn-warning"
+                style="margin-left: 10px; margin-right: 10px;"
+              >
+              <i class="fas fa-edit"></i>
+
+              </button>
+              <button
+                (click)="delete(pd.id)"
+                class="btn btn-danger"
+                style="margin-left: 10px;"
+              >
+              <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <pagination-controls
+    previousLabel="Prev"
+    nextLabel="Next"
+    [responsive]="true"
+    (pageChange)="handlePageChange($event)"
+  ></pagination-controls>
+  Items per Page:
+  <select (change)="handlePageSizeChange($event)">
+    @for (size of pageSizes; track size) {
+    <option>
+      {{ size }}
+    </option>
+  }
+  </select>
+  </div>

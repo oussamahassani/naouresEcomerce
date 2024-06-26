@@ -1,0 +1,16 @@
+<div class="container">
+    <h2>Update Category</h2>
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" formControlName="name" class="form-control" id="name" placeholder="Enter category name">
+        <div *ngIf="updateForm.controls['name'].invalid && (updateForm.controls['name'].dirty || updateForm.controls['name'].touched)" class="text-danger">
+          <div *ngIf="updateForm.get('name').hasError('required')">Name is required.</div>
+        </div>
+      </div>
+
+      <!-- Add more form controls for other fields if needed -->
+      <button type="submit" [disabled]="updateForm.invalid" class="btn btn-primary">Update</button>
+    </form>
+  </div>
+  

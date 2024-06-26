@@ -1,0 +1,102 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="col-lg-7 col-md-10">
+      <button type="button" class="btn btn-info" (click)="list()">
+        Revenir à la liste des Produits
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--7">
+  <div class="row justify-content-center">
+    <div class="col-xl-8">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Formulaire d'ajout Produits</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body bg-white">
+          <form *ngIf="!isSuccessful" (ngSubmit)="onSubmit()" [formGroup]="Produitform" novalidate>
+            <h6 class="heading-small text-muted mb-4">
+              Informations
+            </h6>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-control-label">Choisir une catégorie</label>
+                  <select class="form-control" formControlName="category" required>
+                    <option value="">Sélectionner une catégorie</option>
+                    <option *ngFor="let cat of listCategory" [value]="cat.id">{{cat.name}}</option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="Produitform.get('category').invalid && Produitform.get('category').touched">
+                    Le choix de la catégorie est obligatoire
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-control-label">Nom du Produit</label>
+                  <input type="text" class="form-control" formControlName="name" required minlength="3" maxlength="20" />
+                  <div class="invalid-feedback" *ngIf="Produitform.get('name').invalid && Produitform.get('name').touched">
+                    Le nom du produit est obligatoire (entre 3 et 20 caractères)
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="imgUrl">Image de Pack</label>
+                  <div class="input-group input-group-alternative mb-3">
+                    <input type="file" class="form-control" (change)="handleFileInput($event)" formControlName="imgUrl" required minlength="3" />
+                  </div>
+                  <div class="alert-danger"
+                       *ngIf="Produitform.get('imgUrl').errors && Produitform.get('imgUrl').touched">
+                    <div *ngIf="Produitform.get('imgUrl').hasError('required')">
+                      L'image  est obligatoire
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-control-label">Prix du Produit</label>
+                  <input type="text" class="form-control" formControlName="price" required minlength="3" />
+                  <div class="invalid-feedback" *ngIf="Produitform.get('price').invalid && Produitform.get('price').touched">
+                    Le prix du produit est obligatoire
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-control-label">Description du Produit</label>
+                  <input type="text" class="form-control" formControlName="description" required minlength="3" />
+                  <div class="invalid-feedback" *ngIf="Produitform.get('description').invalid && Produitform.get('description').touched">
+                    La description du produit est obligatoire
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block" [disabled]="Produitform.invalid">Ajouter</button>
+            </div>
+            <div class="alert alert-warning" *ngIf="submitted && !isSuccessful">
+              L'ajout a échoué!<br />{{ errorMessage }}
+            </div>
+          </form>
+          <div class="alert alert-success" *ngIf="isSuccessful">
+            L'ajout est réussi!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

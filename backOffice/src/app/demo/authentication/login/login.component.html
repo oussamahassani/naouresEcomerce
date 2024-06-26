@@ -1,0 +1,46 @@
+<div class="auth-main">
+  <div class="auth-wrapper v3">
+    <div class="auth-form">
+      <div class="auth-header">
+        <a href="javascript:"><img src="assets/images/logo-dark.svg" alt="logo" /></a>
+      </div>
+      <div class="card my-5">
+        <div class="card-body">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+
+
+
+            <div class="login-action mb-20 fix">
+              <span class="log-rem f-left">
+                <input id="remember" type="checkbox" />
+                <label for="remember">Remember me!</label>
+              </span>
+              <span class="forgot-login f-right">
+                <a href="#">Lost your password?</a>
+              </span>
+            </div>
+            <button class="os-btn w-100">Login Now</button>
+            <div class="or-divide"><span>or</span></div>
+            <a routerLink="/pages/register" class="os-btn os-btn-black w-100">Register Now</a>
+          </form>
+          <div *ngIf="error" class="error-message">{{ error }}</div>
+        </div>
+      </div>
+      <div class="auth-footer row">
+        <div class="col my-1">
+          <p class="m-0">Copyright © <a href="https://codedthemes.com/" target="_blank">CodedThemes</a></p>
+        </div>
+        <div class="col-auto my-1">
+          <ul class="list-inline footer-link mb-0">
+            <li class="list-inline-item"><a href="https://codedthemes.com/" target="_blank">Home</a></li>
+            <li class="list-inline-item"><a href="https://codedthemes.com/privacy-policy/" target="_blank">Privacy
+                Policy</a></li>
+            <li class="list-inline-item"><a href="https://codedthemes.support-hub.io/" target="_blank">Contact us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

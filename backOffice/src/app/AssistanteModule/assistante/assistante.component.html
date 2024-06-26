@@ -1,0 +1,60 @@
+<div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <a [routerLink]="['/add-assistante']" class="btn btn-primary">Ajouter un nouveau Admin</a>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Rechercher par titre" [(ngModel)]="title" />
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" (click)="searchTitle()">Rechercher</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+          <tr>
+            <th scope="col">image</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Nom</th>
+            <th scope="col">email</th>
+            <th scope="col">telephone</th>
+            <th scope="col">Genre</th>
+
+            <th scope="col">Date de naissance</th>
+          </tr>
+          <tbody> <tr *ngFor="let user of collection | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: count}">
+          <td>
+            <img
+              src="{{urlImageUser + user.imgUrl}}"
+              alt="Image placeholder"
+              class="mr-3 rounded-circle"
+              width="64"
+            />
+           </td>
+          <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName  }}</td>
+            <td>{{ user.email  }}</td>
+            <td>{{ user.tel  }}</td>
+            <td>{{ user.genre  }}</td>
+
+          </tbody>
+        </table></div></div></div>
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <pagination-controls previousLabel="Préc" nextLabel="Suiv" [responsive]="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="itemsPerPage">Éléments par page:</label>
+        <select class="form-control" id="itemsPerPage" (change)="handlePageSizeChange($event)">
+          <option *ngFor="let size of pageSizes">{{ size }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>

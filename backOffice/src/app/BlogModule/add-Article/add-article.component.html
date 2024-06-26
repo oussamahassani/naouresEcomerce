@@ -1,0 +1,93 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="col-lg-7 col-md-10">
+      <button type="button" class="btn btn-info" (click)="list()">
+        Revenir à la liste des articles
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--7">
+  <div class="row justify-content-center">
+    <div class="col-xl-8">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Formulaire d'ajout Article</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body bg-white">
+          <form *ngIf="!isSuccessful" (ngSubmit)="onSubmit()" [formGroup]="AssistanteForm" novalidate>
+            <h6 class="heading-small text-muted mb-4">
+              Informations
+            </h6>
+            <div class="row">
+
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-control-label">Title </label>
+                <input type="text" class="form-control" formControlName="title" required minlength="3"
+                  maxlength="120" />
+                <div class="invalid-feedback"
+                  *ngIf="AssistanteForm.get('title').invalid && AssistanteForm.get('title').touched">
+                  Le title est obligatoire (entre 3 et 120 caractères)
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="form-control-label">Description Article </label>
+                <textarea type="text" class="form-control" formControlName="postContent" required
+                  minlength="3"> </textarea>
+                <div class="invalid-feedback"
+                  *ngIf="AssistanteForm.get('postContent').invalid && AssistanteForm.get('postContent').touched">
+                  Le description est obligatoire (entre 3 et 20 caractères)
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="imgUrl">Image </label>
+                <div class="input-group input-group-alternative mb-3">
+                  <input type="file" class="form-control" (change)="handleFileInput($event)" formControlName="imgUrl"
+                    required minlength="3" />
+                </div>
+                <div class="alert-danger"
+                  *ngIf="AssistanteForm.get('imgUrl').errors && AssistanteForm.get('imgUrl').touched">
+                  <div *ngIf="AssistanteForm.get('imgUrl').hasError('required')">
+                    L'image est obligatoire
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block"
+                [disabled]="AssistanteForm.invalid">Ajouter</button>
+            </div>
+            <div class="alert alert-warning" *ngIf="submitted && !isSuccessful">
+              L'ajout a échoué!<br />{{ errorMessage }}
+            </div>
+          </form>
+          <div class="alert alert-success" *ngIf="isSuccessful">
+            L'ajout est réussi!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
