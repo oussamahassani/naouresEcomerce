@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Page Title</title>
+  <style>
+    /* Add your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .swiper-container {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .swiper-wrapper {
+      display: flex;
+      transition: transform 0.3s ease;
+    }
+
+    .swiper-slide {
+      flex: 0 0 auto;
+      width: 100%;
+    }
+
+    input[type="number"] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+      width: 150px;
+    }
+
+    button {
+      padding: 8px 60px;
+      background-color: #efcd5c;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <app-header-one>
+    <!-- Add header content here -->
+  </app-header-one>
+
+  <main>
+
+    <!-- Slider -->
+
+
+    <!-- Payment Section -->
+    <div class="vh-100">
+      <div>
+        <div class="p-5 ">
+          <label for="amount">Amount:</label>
+          <input type="number" name="amount" id="amount" [(ngModel)]="amount">
+        </div>
+        <button class="btn btn-lg" (click)="initializePayment()">Pay</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <app-footer-one>
+    <!-- Add footer content here -->
+  </app-footer-one>
+
+</body>
+
+</html>

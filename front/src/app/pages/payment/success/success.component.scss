@@ -1,0 +1,31 @@
+.payment-success {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.alert {
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.alert-message {
+  margin-right: 10px;
+}
+
+.alert-link {
+  color: #0c5460;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.alert-link:hover {
+  text-decoration: underline;
+}

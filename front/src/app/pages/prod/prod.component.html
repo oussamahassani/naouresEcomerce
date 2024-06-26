@@ -1,0 +1,23 @@
+<div class="container">
+  <app-header-one></app-header-one>
+
+  <div class="section__title mb-10">
+    <h2 class="text-center">Catégories</h2>
+  </div>
+
+  <div class="category-list">
+    <div class="category-item" *ngFor="let c of collection">
+      <img [src]="urlImageProduit + c.imgUrl" alt="Product Image" class="category-image" />
+      <div class="category-info">
+        <h5 class="category-title">{{ c.name }}</h5>
+        <p class="category-description">{{ c.description }}</p>
+        <p class="category-price">$ {{ c.price }}</p>
+        <div class="progress-container">
+          <mat-progress-bar mode="determinate" [value]="c.quantity"></mat-progress-bar>
+          <button (click)="increaseQuantity(c)" class="btn btn-success btn-sm"><i class="fas fa-plus"></i></button>
+        </div>
+        <button (click)="Details(c.id)" class="btn btn-info btn-sm mt-2"><i class="fas fa-info"></i> Détails</button>
+      </div>
+    </div>
+  </div>
+</div>

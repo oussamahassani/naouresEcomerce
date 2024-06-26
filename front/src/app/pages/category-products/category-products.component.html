@@ -1,0 +1,22 @@
+<div class="container">
+  <app-header-one></app-header-one>
+
+  <div class="section__title mb-10">
+    <h2 class="text-center">Catégories</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let c of collection">
+      <div class="card mb-3">
+        <img [src]="urlImageProduit + c.imgUrl" alt="Product Image" class="card-img-top" width="200px" height="250px" />
+        <div class="card-body">
+          <h5 class="card-title">{{ c.name }}</h5>
+          <p class="card-text">{{ c.description }}</p>
+          <p class="card-text">$ {{ c.price }}</p>
+          <button [routerLink]="'/home/products-details/' + c.id" class="btn btn-info btn-sm"><i
+              class="fas fa-info"></i> Détails</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,278 @@
+<!-- header start -->
+<app-header-one [transparent]="true" [white_bg]="true"></app-header-one>
+<!-- header end -->
+
+<main>
+
+  <!-- breadcrumb start -->
+  <app-breadcrumb-one title="Account" subtitle="Account"></app-breadcrumb-one>
+  <!-- breadcrumb end -->
+
+  <!-- profile area start -->
+  <section class="profile__area pt-120 pb-50 grey-bg">
+    <div class="container">
+      <div class="profile__basic-inner pb-20 bg-white">
+        <div class="row align-items-center">
+          <div class="col-xxl-6 col-md-6">
+            <div class="profile__basic d-md-flex align-items-center">
+
+              <div class="profile__basic-content">
+                <h3 class="profile__basic-title" *ngIf="currentUser">
+                  Welcome Back <span>{{currentUser.firstName}}</span>
+                </h3>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- profile area end -->
+
+  <!-- profile menu area start -->
+  <section class="profile__menu pb-70 grey-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-xxl-4 col-md-4">
+          <div class="profile__menu-left bg-white mb-50">
+            <h3 class="profile__menu-title"><i class="fa fa-list-alt"></i> Your Menu</h3>
+            <div class="profile__menu-tab">
+              <div class="nav nav-tabs flex-column justify-content-start text-start" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-account-tab" data-bs-toggle="tab" data-bs-target="#nav-account"
+                  type="button" role="tab" aria-controls="nav-account" aria-selected="true"> <i class="fa fa-user"></i>
+                  My Account </button>
+                <button class="nav-link" id="nav-historypayement-tab" data-bs-toggle="tab"
+                  data-bs-target="#nav-historypayement" type="button" role="tab" aria-controls="nav-historypayement"
+                  aria-selected="true"> <i class="fa fa-user"></i>
+                  History Payement </button>
+                <button class="nav-link" id="nav-order-tab" data-bs-toggle="tab" data-bs-target="#nav-order"
+                  type="button" role="tab" aria-controls="nav-order" aria-selected="false"><i class="fa fa-file"></i>
+                  Orders </button>
+
+                <button class="nav-link" id="nav-addReclamation-tab" data-bs-toggle="tab"
+                  data-bs-target="#nav-AddReclamation" type="button" role="tab" aria-controls="nav-AddReclamation"
+                  aria-selected="false"><i class="fa fa-plus-circle"></i>
+                  Ajouter Reclamation </button>
+                <button class="nav-link" id="nav-reclamation-tab" data-bs-toggle="tab" data-bs-target="#nav-Reclamation"
+                  type="button" role="tab" aria-controls="nav-Reclamation" aria-selected="false"><i
+                    class="fa fa-receipt"></i>
+                  Liste de Reclamation </button>
+                <a class="nav-link" href="/payment"><i class="fa fa-signal"></i>
+                  Charger Compte </a>
+                <button class="nav-link" id="nav-password-tab" data-bs-toggle="tab" data-bs-target="#nav-password"
+                  type="button" role="tab" aria-controls="nav-password" aria-selected="false"><i
+                    class="fa fa-lock"></i>Change Password</button>
+
+                <button class="nav-link" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xxl-8 col-md-8">
+          <div class="profile__menu-right">
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-account" role="tabpanel" aria-labelledby="nav-account-tab">
+                <div class="profile__info">
+                  <div class="profile__info-top d-flex justify-content-between align-items-center">
+                    <h3 class="profile__info-title">Profile Information</h3>
+                    <button class="profile__info-btn" type="button" data-bs-toggle="modal"
+                      data-bs-target="#profile_edit_modal"><i class="fa-regular fa-pen-to-square"></i> Edit
+                      Profile</button>
+                  </div>
+
+                  <div class="profile__info-wrapper white-bg" *ngIf="currentUser">
+                    <div class="profile__info-item">
+                      <p>Name</p>
+                      <h4>{{currentUser.firstName}}</h4>
+                    </div>
+                    <div class="profile__info-item">
+                      <p>Email</p>
+                      <h4>
+                        <a href="mailt:outstock@hotmail.com" class="__cf_email__"
+                          data-cfemail="94fdfaf2fbd4f1f0e1fff1e6baf7fbf9">{{currentUser.email}}</a>
+                      </h4>
+                    </div>
+                    <div class="profile__info-item">
+                      <p>Phone</p>
+                      <h4>{{currentUser.tel}}</h4>
+                    </div>
+                    <div class="profile__info-item">
+                      <p>Sold</p>
+                      <h4>{{currentUser.sold}}</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="nav-historypayement" role="tabpanel"
+                aria-labelledby="nav-historypayement-tab">
+                <div class="order__info">
+                  <div class="order__info-top d-flex justify-content-between align-items-center">
+                    <h3 class="order__info-title">My historique</h3>
+                    <button type="button" class="order__info-btn">
+                      <i class="fa-regular fa-trash-can"></i> Clear
+                    </button>
+                  </div>
+
+                  <div class="order__list white-bg table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col"> ID</th>
+                          <th scope="col">Date Order</th>
+                          <th scope="col">Price</th>
+                          <th scope="col">produit</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngIf="listPayement.length >0">
+                        <tr *ngFor="let item of listPayement; index as i">
+                          <td class="order__id">#{{i}}</td>
+                          <td>{{formatDate(item.createdDate)}}
+                          </td>
+                          <td>{{item.payement}}DT</td>
+                          <td>{{item.productId?.name}}</td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nav-order" role="tabpanel" aria-labelledby="nav-order-tab">
+                <div class="order__info">
+                  <div class="order__info-top d-flex justify-content-between align-items-center">
+                    <h3 class="order__info-title">My Orders</h3>
+                    <button type="button" class="order__info-btn">
+                      <i class="fa-regular fa-trash-can"></i> Clear
+                    </button>
+                  </div>
+
+                  <div class="order__list white-bg table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Order ID</th>
+                          <th scope="col">Date Order</th>
+                          <th scope="col">Price</th>
+                          <th scope="col">Details</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngIf="listOrder.length >0">
+                        <tr *ngFor="let item of listOrder; index as i">
+                          <td class="order__id">#{{item.orderId}}</td>
+                          <td>{{formatDate(item.createdDate)}}
+                          </td>
+                          <td>{{item.montantPayement}}DT</td>
+                          <td><a [routerLink]="['/shop/shop-details']" class="order__view-btn">View</a></td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">
+                <div class="password__change">
+                  <div class="password__change-top">
+                    <h3 class="password__change-title">Change Password</h3>
+                  </div>
+                  <div class="password__form white-bg">
+
+                    <form [formGroup]="changepassForm" (ngSubmit)="updatePassword()">
+                      <div class="password__input">
+                        <p>New Password</p>
+                        <input type="password" placeholder="Enter New Password" formControlName="password">
+                      </div>
+                      <span *ngIf=" (password?.hasError('required') && password?.touched) " class="text-danger">
+                        Password is required
+                      </span>
+                      <div class="password__input">
+                        <p>Confirm Password</p>
+                        <input type="password" placeholder="Confirm Password" formControlName="confirmpassword">
+                      </div>
+                      <span class="text-danger"
+                        *ngIf=" (confirmpassword?.hasError('required') && confirmpassword?.touched) ">
+                        Password is required
+                      </span>
+                      <div class="password__input">
+                        <button type="submit" class="os-btn os-btn-black">Update password</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="nav-AddReclamation" role="tabpanel"
+                aria-labelledby="nav-AddReclamation-tab">
+                <div class="password__change">
+                  <div class="password__change-top">
+                    <h3 class="password__change-title">Add Reclamation</h3>
+                  </div>
+                  <div class="password__form white-bg">
+
+                    <form [formGroup]="reclamationForm" (ngSubmit)="addReclamation()">
+                      <div class="password__input">
+                        <p>Reclamation </p>
+                        <textarea placeholder="Enter  description reclamation" formControlName="description">
+                          </textarea>
+                      </div>
+                      <span *ngIf=" (description?.hasError('required') && description?.touched) " class="text-danger">
+                        description is required
+                      </span>
+
+                      <div class="password__input">
+                        <button type="submit" class="os-btn os-btn-black">Add Reclamation</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="nav-Reclamation" role="tabpanel" aria-labelledby="nav-reclamation-tab">
+                <div class="order__info">
+                  <div class="order__info-top d-flex justify-content-between align-items-center">
+                    <h3 class="order__info-title">Liste Reclamation</h3>
+                    <button type="button" class="order__info-btn">
+                      <i class="fa-regular fa-trash-can"></i> Clear
+                    </button>
+                  </div>
+
+                  <div class="order__list white-bg table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col"> ID</th>
+                          <th scope="col">Date Creation</th>
+                          <th scope="col">Description</th>
+                          <th scope="col">Etat</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngIf="listReclamation.length >0">
+                        <tr *ngFor="let item of listReclamation; index as i">
+                          <td class="order__id">#{{i}}</td>
+                          <td>{{formatDate(item.createdDate)}}
+                          </td>
+                          <td>{{item.description}}</td>
+                          <td>{{item.treated? "traiter" : "Non traiter"}}</td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- profile menu area end -->
+
+</main>
+
+<!-- footer start -->
+<app-footer-one></app-footer-one>
+<!-- footer end -->
