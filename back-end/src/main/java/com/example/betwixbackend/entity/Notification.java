@@ -19,7 +19,7 @@ public class Notification {
     private String message;
     private String sender;
     private String recipient;
-    private Boolean isRead ;
+    private Boolean isRead = false ;
     
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     @CreatedDate

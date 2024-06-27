@@ -21,6 +21,7 @@ import com.example.betwixbackend.dto.ProductUpdatePayementDto;
 import com.example.betwixbackend.entity.Product;
 import com.example.betwixbackend.entity.User;
 import com.example.betwixbackend.repository.CategoryRepository;
+import com.example.betwixbackend.repository.NotificationRepository;
 import com.example.betwixbackend.repository.ProductRepository;
 import com.example.betwixbackend.repository.UserPayementRepository;
 import com.example.betwixbackend.repository.UserRepository;
@@ -30,11 +31,15 @@ import utils.Utils;
 import com.example.betwixbackend.entity.Category;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import com.example.betwixbackend.entity.Notification;
 
 @Service
 public class ProductService {
     private static final Logger logger = LogManager.getLogger(ProductService.class);
 
+    @Autowired
+    private NotificationRepository notificationRepository;
+    
     @Value("${pathProduit}")
     private String pathProduit;
 
@@ -124,6 +129,16 @@ public class ProductService {
 
 			userPayement.get().setSold(newSoled.toString());
 			userRepository.save(userPayement.get());
+			if(myproduct.getPrice() >= 0) {
+				List<User> UserSupperAdmin = userRepository.findAllByRole("ROLE_SUPERADMIN");
+			    for (User user : UserSupperAdmin) {
+				Notification newNotification = new Notification();
+				newNotification.setRecipient(user.getId());
+				newNotification.setSender("System");;
+				newNotification.setMessage("le produit de reference " + myproduct.getId() + " est totalement Payee" );
+				notificationRepository.save(newNotification);
+			}
+			}
 			return newpayement ;
 			}
 		}

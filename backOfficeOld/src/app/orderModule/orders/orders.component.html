@@ -1,0 +1,71 @@
+<div class="list">
+    <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">CreatedAt</th>
+                    <th scope="col">OrderStatus</th>
+                    <th scope="col">Items</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="
+              let pd of order
+                | paginate
+                  : { itemsPerPage: pageSize,currentPage: page,
+                    totalItems: count}
+            ">
+                    <th scope="row">
+                        <div class="media align-items-center">
+                            <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
+                                <img alt="Image placeholder" src="../assets/img/theme/bootstrap.jpg" />
+                            </a>
+                            <div class="media-body">
+                                <span class="mb-0 text-sm">{{ pd.createdAt }} </span>
+                            </div>
+                        </div>
+                    </th>
+
+                    <td>
+                        {{ pd.orderStatus }}
+                    </td>
+                    <td>
+                        <ul *ngIf="pd.items.length > 0">
+                            <li *ngFor="
+                        let pd of pd.items">
+                                <p>name product :{{ pd.product.name}}</p>
+                                <p>price : {{ pd.price}}</p>
+                                <p>quantity : {{ pd.quantity}}</p>
+                            </li>
+
+                        </ul>
+                    </td>
+                    <td>
+                        {{ pd.client.firstName }} {{ pd.client.lastName }}
+                    </td>
+
+                    <td>
+
+                        <button (click)="update(pd.id)" class="btn btn-warning "
+                            style="margin-left: 10px; margin-right: 10px;">
+                            <i class="fas fa-edit"></i>
+                        </button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true"
+        (pageChange)="handlePageChange($event)"></pagination-controls>
+    Items per Page:
+    <select (change)="handlePageSizeChange($event)">
+        @for (size of pageSizes; track size) {
+        <option>
+            {{ size }}
+        </option>
+        }
+    </select>
+</div>

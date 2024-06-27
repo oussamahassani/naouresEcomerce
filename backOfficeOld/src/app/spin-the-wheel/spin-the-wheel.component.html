@@ -1,0 +1,40 @@
+<div id="center">
+    <app-wheel-spin
+      #wheel
+      [width]=spinwhithHieght
+      [height]=spinwhithHieght
+      [spinDuration]=spinDuration
+      [items]='items'
+      [innerRadius]='20'
+      [spinAmount]='10'
+      [textOrientation]='textOrientation'
+      [textAlignment]='textAlignment'
+      pointerStrokeColor='black'
+      pointerFillColor='gold'
+      [idToLandOn]='idToLandOn'
+      (onSpinStart)='before()'
+      (onSpinComplete)='after()'
+    ></app-wheel-spin>
+    <div class="reset">
+      <button (click)="reset()">Reset</button>
+    </div>
+    <div *ngIf="isModalVisible" class="modal" role="dialog" [ngStyle]="{'display':display}">
+      <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">Try again </h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+       {{ game.text }}
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+    </div>
+      </div>
+    </div>
+    <canvas id="canvas"></canvas>
+
+
+  </div>

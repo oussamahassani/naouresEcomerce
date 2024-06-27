@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <a [routerLink]="['/addwhellMangement']" class="btn btn-primary">Add New Chance</a>
+    </div>
+    <div class="col-md-6"></div>
+  </div>
+  <div class="list">
+    <div class="table-responsive">
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+        <tr>
+          <th scope="col">Fill Style</th>
+          <th scope="col">Text</th>
+          <th scope="col">Text Fill Style</th>
+          <th scope="col">Text Font Size</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let pd of collection | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: count}">
+          <td>{{ pd.fillStyle }}</td>
+          <td>{{ pd.text }}</td>
+          <td><input type="color" [value]="pd.textFillStyle" readonly /></td>
+          <td>{{ pd.textFontSize }}</td>
+          <td>
+            <button (click)="delete(pd.id)" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="itemsPerPage">Items per Page:</label>
+          <select class="form-control" id="itemsPerPage" (change)="handlePageSizeChange($event)">
+            <option *ngFor="let size of pageSizes">{{ size }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

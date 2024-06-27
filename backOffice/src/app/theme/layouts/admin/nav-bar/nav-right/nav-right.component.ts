@@ -1,16 +1,21 @@
 // angular import
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterModule, Event } from '@angular/router';
+import { UserService } from '../../../../../services/user.service'
+import moment, { Duration } from 'moment';
 
 @Component({
   selector: 'app-nav-right',
   templateUrl: './nav-right.component.html',
   styleUrls: ['./nav-right.component.scss']
 })
-export class NavRightComponent {
+export class NavRightComponent implements OnInit {
+  curentUser: any
+  notifList: any;
+  userPhoto = "http://localhost:8081/imageUser/"
   constructor(
     private route: Router,
-
+    private userService: UserService
   ) { }
   // public method
   profile = [
@@ -35,6 +40,10 @@ export class NavRightComponent {
       title: 'Logout'
     }
   ];
+  ngOnInit(): void {
+    this.returnCurrentUser()
+
+  }
   logout() {
     // Remove token from local storage or cookies
     localStorage.clear();
@@ -44,4 +53,29 @@ export class NavRightComponent {
     this.route.navigate(['/login']);
   }
 
+  returnCurrentUser() {
+    let idUser = localStorage.getItem("userId")
+    this.userService.getUserById(idUser).subscribe((res: any) => {
+      this.curentUser = res;
+      console.log(res.id)
+      if (res.id) {
+        this.userService.getNotif(res.id).subscribe(res => {
+          this.notifList = res;
+        })
+      }
+    })
+  }
+
+  getTimeElapsed(dateCreation: string): string {
+    const now = moment();
+    const creationDate = moment(dateCreation);
+    const duration: Duration = moment.duration(now.diff(creationDate));
+    const days = duration.asDays();
+
+    if (days < 1) {
+      return `${Math.floor(duration.asHours())} heures`;
+    } else {
+      return `${Math.floor(days)} jours`;
+    }
+  }
 }

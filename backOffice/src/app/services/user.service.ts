@@ -14,7 +14,9 @@ export class UserService {
     return this.http.get(`${UrlBakend}/users/${id}`);
   }
 
-
+  public getNotif(idUser: any) {
+    return this.http.get(`${UrlBakend}/notifications/notifByUser/${idUser}`);
+  }
 
 
 

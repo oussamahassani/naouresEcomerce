@@ -30,5 +30,10 @@ public class NotificationService {
     public void deleteById(String id) {
         notificationRepository.deleteById(id);
     }
+
+	public List<Notification> findByUserId(String id) {
+		// TODO Auto-generated method stub
+		return notificationRepository.findByRecipient(id);
+	}
 }
 

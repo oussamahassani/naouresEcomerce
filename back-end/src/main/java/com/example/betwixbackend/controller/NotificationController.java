@@ -27,7 +27,11 @@ public class NotificationController {
                 .map(notification -> ResponseEntity.ok(notification))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
-
+    @GetMapping("/notifByUser/{id}")
+    public List<Notification> getNotificationByUserId(@PathVariable String id) {
+        return notificationService.findByUserId(id);
+               
+    }
     @PostMapping
     public Notification createNotification(@RequestBody Notification notification) {
         return notificationService.save(notification);

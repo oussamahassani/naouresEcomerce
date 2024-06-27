@@ -1,0 +1,56 @@
+<div class="reclamation-container">
+  <h1>Liste des Réclamations</h1>
+
+  <table mat-table [dataSource]="reclamations" class="mat-elevation-z8">
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <!-- Date de Création Column -->
+    <ng-container matColumnDef="dateCreation">
+      <th mat-header-cell *matHeaderCellDef> Date de Création </th>
+      <td mat-cell *matCellDef="let element"> {{element.dateCreation | date}} </td>
+    </ng-container>
+
+    <!-- Treated Column --><div class="reclamation-container">
+    <mat-toolbar color="primary">
+      <span>Liste des Réclamations</span>
+    </mat-toolbar>
+
+    <mat-card>
+      <mat-card-content>
+        <table mat-table [dataSource]="reclamations" class="mat-elevation-z8" multiTemplateDataRows>
+          <!-- Description Column -->
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+          </ng-container>
+
+          <!-- Date de Création Column -->
+          <ng-container matColumnDef="dateCreation">
+            <th mat-header-cell *matHeaderCellDef> Date de Création </th>
+            <td mat-cell *matCellDef="let element"> {{element.dateCreation | date}} </td>
+          </ng-container>
+
+          <!-- Traité Column -->
+          <ng-container matColumnDef="treated">
+            <th mat-header-cell *matHeaderCellDef> Traité </th>
+            <td mat-cell *matCellDef="let element"> {{element.treated ? 'Oui' : 'Non'}} </td>
+          </ng-container>
+
+          <!-- Temps Écoulé Column -->
+          <ng-container matColumnDef="timeElapsed">
+            <th mat-header-cell *matHeaderCellDef> Temps Écoulé </th>
+            <td mat-cell *matCellDef="let element"> {{ getTimeElapsed(element.dateCreation) }} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  </table></div>
