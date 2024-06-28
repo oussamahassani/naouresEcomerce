@@ -11,4 +11,6 @@ public interface NotificationRepository extends MongoRepository<Notification, St
 
 	List<Notification> findByRecipient(String id);
 
+	List<Notification> findByRecipientAndIsRead(String idUser, boolean isRead);
+
 }

@@ -18,7 +18,12 @@ export class UserService {
     return this.http.get(`${UrlBakend}/notifications/notifByUser/${idUser}`);
   }
 
-
+  public readAllNotif(id: any) {
+    return this.http.get(`${UrlBakend}/notifications/notifReadAllByUser/${id}`);
+  }
+  public getDashbordDataApi() {
+    return this.http.get(`${UrlBakend}/users/getDashbord`);
+  }
 
 
 }

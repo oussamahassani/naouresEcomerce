@@ -4,8 +4,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { HomeOneComponent } from './home-one/home-one.component';
 
-import { ShopModule } from '../shop/shop.module';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 
 
 
@@ -19,7 +18,6 @@ import {HttpClientModule} from "@angular/common/http";
     HomeRoutingModule,
     HttpClientModule,
     SharedModule,
-    ShopModule,
   ]
 })
 export class HomeModule { }

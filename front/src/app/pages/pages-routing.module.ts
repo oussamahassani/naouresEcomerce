@@ -6,9 +6,9 @@ import { RegisterComponent } from './register/register.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ContactComponent } from './contact/contact.component';
 import { AccountComponent } from './account/account.component';
-import {HomeOneComponent} from "../home/home-one/home-one.component";
-import {ProdComponent} from "./prod/prod.component";
-
+import { HomeOneComponent } from "../home/home-one/home-one.component";
+import { ProdComponent } from "./prod/prod.component";
+import { BlogDetailsComponent } from "./blog-details/blog-details.component";
 
 const routes: Routes = [
 
@@ -29,9 +29,14 @@ const routes: Routes = [
     title: 'Contact Page',
   },
   {
-    path:'home',
-    component:HomeOneComponent,
-    title:'CoinProfit ',
+    component: BlogDetailsComponent,
+    title: "blog details",
+    path: "blog-details/:id"
+  },
+  {
+    path: 'home',
+    component: HomeOneComponent,
+    title: 'CoinProfit ',
   },
   {
     path: 'account',
@@ -50,4 +55,4 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 
-export class PagesRoutingModule {}
+export class PagesRoutingModule { }

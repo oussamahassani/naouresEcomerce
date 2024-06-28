@@ -12,6 +12,7 @@ import moment, { Duration } from 'moment';
 export class NavRightComponent implements OnInit {
   curentUser: any
   notifList: any;
+  notifNotRead: any;
   userPhoto = "http://localhost:8081/imageUser/"
   constructor(
     private route: Router,
@@ -57,10 +58,10 @@ export class NavRightComponent implements OnInit {
     let idUser = localStorage.getItem("userId")
     this.userService.getUserById(idUser).subscribe((res: any) => {
       this.curentUser = res;
-      console.log(res.id)
       if (res.id) {
         this.userService.getNotif(res.id).subscribe(res => {
           this.notifList = res;
+          this.notifNotRead = this.notifList.filter(el => el.isRead = false);
         })
       }
     })
@@ -77,5 +78,11 @@ export class NavRightComponent implements OnInit {
     } else {
       return `${Math.floor(days)} jours`;
     }
+  }
+  readnotification() {
+    let idUser = localStorage.getItem("userId")
+    this.userService.readAllNotif(idUser).subscribe(res => {
+      console.log(res)
+    })
   }
 }

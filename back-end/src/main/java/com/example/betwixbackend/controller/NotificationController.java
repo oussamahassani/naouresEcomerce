@@ -32,6 +32,12 @@ public class NotificationController {
         return notificationService.findByUserId(id);
                
     }
+    @GetMapping("/notifReadAllByUser/{id}")
+    public List<Notification> notifReadAllByUser(@PathVariable String id) {
+        return notificationService.findByUserIdAndChangeRead(id);
+               
+    }
+    
     @PostMapping
     public Notification createNotification(@RequestBody Notification notification) {
         return notificationService.save(notification);

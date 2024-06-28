@@ -2,6 +2,7 @@ package com.example.betwixbackend.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import com.example.betwixbackend.dto.UserResponse;
@@ -53,7 +54,12 @@ public class UserController {
         Optional<User> obj = userIService.repository.findById(id);
         return ResponseEntity.ok().body(obj);
     }
+    @GetMapping(value = "/getDashbord")
 
+    public ResponseEntity<Map<String, Object>> getDashbord() {
+    	Map<String, Object> obj = userIService.getDashbordData();
+        return ResponseEntity.ok().body(obj);
+    }
     @PostMapping(path = "/save", consumes = MediaType.ALL_VALUE)
 
     public ResponseEntity<User> createUser(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName, @RequestParam(required = false) String genre, @RequestParam(required = false) String tel, @RequestParam(required = false) String brithday, @RequestParam(required = false) String email, @RequestParam(required = false) String password, @RequestParam(required = false) String enabled, @RequestParam(required = false) String role, 

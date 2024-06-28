@@ -2,6 +2,7 @@ package com.example.betwixbackend.entity;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.annotation.Collation;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -31,6 +33,9 @@ public class Product implements Serializable {
     private ObjectId category ;
     private Boolean isDone = false ;
     private String idUser;
+	@CreatedDate
+	private Date createdDate;
+	
     @Override
     public int hashCode() {
         final int prime = 31;

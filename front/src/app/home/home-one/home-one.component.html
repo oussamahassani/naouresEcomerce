@@ -5,40 +5,44 @@
 <main>
 
 
-<!-- hero slider start -->
- <section class="slider__area p-relative">
+  <!-- hero slider start -->
+  <section class="slider__area p-relative">
 
 
 
-  <div class="slider-active swiper-container" #heroSliderContainer>
-    <div class="swiper-wrapper">
-      <div *ngFor="let item of hero_slider_data" class="single-slider slider__height d-flex align-items-center swiper-slide" [style.backgroundImage]="'url(' + item.bgImg + ')'">
+    <div class="slider-active swiper-container" #heroSliderContainer>
+      <div class="swiper-wrapper">
+        <div *ngFor="let item of hero_slider_data"
+          class="single-slider slider__height d-flex align-items-center swiper-slide"
+          [style.backgroundImage]="'url(' + item.bgImg + ')'">
           <div class="container">
-              <div class="row">
-                  <div class="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-12">
-                      <div class="slider__content">
-                          <h2 [innerHTML]="item.title"></h2>
-                          <p>{{item.subtitle}}</p>
-                          <a routerLink="/shop" class="os-btn os-btn-2">Discover now</a>
-                      </div>
-                  </div>
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-12">
+                <div class="slider__content">
+                  <h2 [innerHTML]="item.title"></h2>
+                  <p>{{item.subtitle}}</p>
+                  <a routerLink="/shop" class="os-btn os-btn-2">Discover now</a>
+                </div>
               </div>
+            </div>
           </div>
+        </div>
       </div>
+      <div class="tp-slider-dot tp-swiper-dot"></div>
     </div>
-    <div class="tp-slider-dot tp-swiper-dot"></div>
-  </div>
-</section>
-<!-- hero slider end -->
+  </section>
+  <!-- hero slider end -->
 
 
-<!-- Category  area start -->
+  <!-- Category  area start -->
   <section class="product__area pt-60 pb-100">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
 
-          <strong><h1>Categories</h1></strong>
+          <strong>
+            <h1>Categories</h1>
+          </strong>
           <div class="section__title mb-4">
           </div>
           <div class="category-list">
@@ -46,7 +50,8 @@
               <a [routerLink]="['/category/products', c.id]" class="category-link">
                 <div class="category-card">
                   <div class="category-image">
-                    <img src="{{ urlImageCategory + c.image }}" alt="{{ c?.name }} image" class="img-fluid rounded-circle">
+                    <img src="{{ urlImageCategory + c.image }}" alt="{{ c?.name }} image"
+                      class="img-fluid rounded-circle">
                   </div>
                   <div class="category-info">
                     <h6 class="category-name">{{ c.name }}</h6>
@@ -62,35 +67,48 @@
 
 
 
- <section class="client__area pt-15 pb-140">
+  <section class="client__area pt-15 pb-140">
     <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
+      <div class="row">
+        <div class="col-xl-12">
 
-            </div>
         </div>
+      </div>
     </div>
- </section>
-<section class="blog__area pb-70">
+  </section>
+  <section class="blog__area pb-70">
     <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="section__title-wrapper text-center mb-55">
-                    <div class="section__title mb-10">
-                        <h2>Our Blog Posts</h2>
-                    </div>
-                    <div class="section__sub-title">
-                        <p>Mirum est notare quam littera gothica quam nunc putamus parum claram!</p>
-                    </div>
-                </div>
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="section__title-wrapper text-center mb-55">
+            <div class="section__title mb-10">
+              <h2>Our Blog Posts</h2>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-12">
+            <div class="section__sub-title">
+              <p>Mirum est notare quam littera gothica quam nunc putamus parum claram!</p>
             </div>
+          </div>
         </div>
+      </div>
+      <div class="row">
+
+        <div *ngFor="let c of article" class="col-xl-6">
+          <a [routerLink]="['/pages/blog-details', c.id]" class="category-link">
+            <div class="category-card">
+              <div class="category-image">
+                <img src="{{ urlImageBlog + c.imgUrl }}" alt="{{ c?.imgUrl }} image" class="img-fluid rounded-circle"
+                  width="250">
+              </div>
+              <div class="category-info">
+                <h6 class="category-name">{{ c.title }}</h6>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
     </div>
-</section>
+  </section>
 </main>
 <app-footer-one></app-footer-one>
 <!-- footer end -->

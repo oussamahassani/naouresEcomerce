@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.betwixbackend.entity.Notification;
+import com.example.betwixbackend.entity.User;
 import com.example.betwixbackend.repository.NotificationRepository;
 
 import java.util.List;
@@ -34,6 +35,19 @@ public class NotificationService {
 	public List<Notification> findByUserId(String id) {
 		// TODO Auto-generated method stub
 		return notificationRepository.findByRecipient(id);
+	}
+
+	public List<Notification> findByUserIdAndChangeRead(String id) {
+		// TODO Auto-generated method stub
+		List<Notification> notitifcationByUser = notificationRepository.findByRecipientAndIsRead(id,false);
+	    for (Notification notif : notitifcationByUser) {
+				
+			
+	    	notif.setIsRead(true);
+				notificationRepository.save(notif);
+			}
+		
+		return notitifcationByUser;
 	}
 }
 

@@ -7,9 +7,9 @@
     </a>
   </li>
   <li class="dropdown pc-h-item" ngbDropdown>
-    <a class="pc-head-link dropdown-toggle arrow-none me-0" ngbDropdownToggle>
+    <a class="pc-head-link dropdown-toggle arrow-none me-0" ngbDropdownToggle (click)="readnotification()">
       <i class="ti ti-bell"></i>
-      <span class="badge bg-success pc-h-badge">{{notifList.length}}</span>
+      <span class="badge bg-success pc-h-badge" *ngIf="notifNotRead">{{notifNotRead.length}}</span>
     </a>
     <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown" ngbDropdownMenu>
       <div class="dropdown-header d-flex align-items-center justify-content-between">
@@ -21,7 +21,7 @@
         <div class="dropdown-header px-0 text-wrap header-notification-scroll">
           <div class="list-group list-group-flush w-100">
             <a class="list-group-item list-group-item-action" *ngFor="let element of notifList">
-              <div class="d-flex">
+              <div [ngClass]="element.isRead == false ? 'd-flex bg-light p-3' : 'd-flex '">
                 <div class="flex-shrink-0">
                   <div class="user-avtar bg-light-success">
                     <i class="ti ti-gift"></i>
