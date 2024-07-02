@@ -25,4 +25,8 @@ export class CategoryService {
   public getAllArticle() {
     return this.http.get(`${this.baseUrl}/posts`);
   }
+
+  public getArticleById(id: any) {
+    return this.http.get(`${this.baseUrl}/posts/${id}`);
+  }
 }

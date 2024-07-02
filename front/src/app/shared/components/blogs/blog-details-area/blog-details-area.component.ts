@@ -8,14 +8,16 @@ import IBlogType from 'src/app/shared/types/blog-d-t';
   styleUrls: ['./blog-details-area.component.scss']
 })
 export class BlogDetailsAreaComponent {
-  @Input() blog!:IBlogType;
-
+  @Input() blog!: IBlogType;
+  urlImageBlog = "http://localhost:8081/imageUser/"
   public related_blogs: IBlogType[] = [];
 
-  constructor(public utilsService:UtilsService){
+  constructor(public utilsService: UtilsService) {
     this.utilsService.blogs.subscribe((blogs) => {
-      this.related_blogs = blogs.slice(0,2)
+      this.related_blogs = blogs.slice(0, 2)
     });
   }
-
+  getTimeElapsed(dateCreation: string): string {
+    return new Date(dateCreation).toLocaleDateString('en-GB')
+  }
 }

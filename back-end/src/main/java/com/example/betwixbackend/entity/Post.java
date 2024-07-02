@@ -39,9 +39,10 @@ public class Post
 	private String title;
 	
     private String imgUrl;
+    private String author = "system";
     
     @CreatedDate
-    private Date createdDate;
+    private Date date;
 	
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
 

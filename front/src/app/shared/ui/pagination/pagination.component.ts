@@ -1,4 +1,4 @@
-import { Component,EventEmitter,Input,Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
@@ -12,9 +12,9 @@ export class PaginationComponent {
 
   @Output() setPage: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   pageSet(page: number) {
     this.setPage.emit(page); // Set Page Number

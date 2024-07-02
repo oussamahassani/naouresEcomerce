@@ -60,6 +60,12 @@ public class UserController {
     	Map<String, Object> obj = userIService.getDashbordData();
         return ResponseEntity.ok().body(obj);
     }
+    @PostMapping(path = "/photos/add/{id}", consumes = MediaType.ALL_VALUE)
+    public    ResponseEntity<User> updateUser(@PathVariable String id ,@RequestParam(required = false) MultipartFile imgUrl){
+    	User createdUser = userIService.updatedUserProfile(id ,imgUrl );
+    	
+        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+    }
     @PostMapping(path = "/save", consumes = MediaType.ALL_VALUE)
 
     public ResponseEntity<User> createUser(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName, @RequestParam(required = false) String genre, @RequestParam(required = false) String tel, @RequestParam(required = false) String brithday, @RequestParam(required = false) String email, @RequestParam(required = false) String password, @RequestParam(required = false) String enabled, @RequestParam(required = false) String role, 

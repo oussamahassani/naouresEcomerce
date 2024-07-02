@@ -141,5 +141,7 @@ export class AdsService {
   getAllPost() {
     return this.http.get(`${this.baseUrl}/posts`);
   }
-
+  deletePost(id: any) {
+    return this.http.delete(`${this.baseUrl}/posts/${id}`);
+  }
 }

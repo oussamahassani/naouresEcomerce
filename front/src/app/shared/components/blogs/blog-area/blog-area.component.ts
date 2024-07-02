@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { UtilsService } from 'src/app/shared/services/utils.service';
 import IBlogType from 'src/app/shared/types/blog-d-t';
+import { CategoryService } from "../../../../shared/services/category.service";
 
 @Component({
   selector: 'app-blog-area',
@@ -12,10 +13,10 @@ import IBlogType from 'src/app/shared/types/blog-d-t';
 })
 export class BlogAreaComponent {
 
-  @Input() left_side:boolean = false;
-  @Input() no_side:boolean = false;
-  @Input() blog_2_col:boolean = false;
-  @Input() blog_3_col:boolean = false;
+  @Input() left_side: boolean = false;
+  @Input() no_side: boolean = false;
+  @Input() blog_2_col: boolean = false;
+  @Input() blog_3_col: boolean = false;
 
   getClass() {
     let dynamicClass = '';
@@ -31,7 +32,7 @@ export class BlogAreaComponent {
     return dynamicClass;
   }
 
-  public blogs: IBlogType[] = [];
+  public blogs: any[] = [];
   public pageSize: number = this.blog_2_col ? 4 : 3;
   public paginate: any = {}; // Pagination use only
   public sortBy: string = 'asc'; // Sorting Order
@@ -42,8 +43,9 @@ export class BlogAreaComponent {
     public utilsService: UtilsService,
     private route: ActivatedRoute,
     private router: Router,
-    private viewScroller: ViewportScroller
-  ) {}
+    private viewScroller: ViewportScroller,
+    private adsService: CategoryService
+  ) { }
 
   ngOnInit() {
     if (this.blog_2_col) {
@@ -55,13 +57,19 @@ export class BlogAreaComponent {
 
     this.route.queryParams.subscribe((params) => {
       this.pageNo = params['page'] ? params['page'] : this.pageNo;
-      this.utilsService.filterBlogs().subscribe((response) => {
-        // Sorting Filter
-        this.blogs = response.filter((b) => b.blog === 'blog-standard');
+      this.adsService.getAllArticle().subscribe((res: any) => {
+        this.blogs = res;
         // Paginate Products
         this.paginate = this.productService.getPager(this.blogs.length, Number(+this.pageNo), this.pageSize);
         this.blogs = this.blogs.slice(this.paginate.startIndex, this.paginate.endIndex + 1);
-      });
+      })
+      /* this.utilsService.filterBlogs().subscribe((response) => {
+         // Sorting Filter
+         this.blogs = response.filter((b) => b.blog === 'blog-standard');
+         // Paginate Products
+         this.paginate = this.productService.getPager(this.blogs.length, Number(+this.pageNo), this.pageSize);
+         this.blogs = this.blogs.slice(this.paginate.startIndex, this.paginate.endIndex + 1);
+       });*/
     });
   }
 

@@ -64,13 +64,13 @@ public class PostController
 
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Post> findById(@PathVariable Long id)
+	public ResponseEntity<Post> findById(@PathVariable String id)
 	{
 		return ResponseEntity.status(HttpStatus.OK).body(this.postService.findById(id));
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Post> deleteById(@PathVariable Long id)
+	public ResponseEntity<Post> deleteById(@PathVariable String id)
 	{
 		this.postService.deleteById(id);
 		

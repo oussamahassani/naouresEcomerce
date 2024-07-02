@@ -1,11 +1,12 @@
 interface IBlogType {
-  id:number,
-  img:string,
-  title:string,
-  author:string,
-  date:string,
-  desc:string,
-  blog?:string,
+  id: number,
+  imgUrl: string,
+  title: string,
+  author: string,
+  date: string,
+  desc: string,
+  blog?: string,
+  postContent?: string,
 }
 
 export default IBlogType;

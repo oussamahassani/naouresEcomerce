@@ -125,8 +125,8 @@ public class UserIService {
     }
 
     public User findById(String id) {
-        User  obj = findById(id);
-        return obj;
+        Optional<User>  obj = repository.findById(id);
+        return obj.get();
     }
 
 
@@ -169,5 +169,36 @@ public class UserIService {
 			 hashMap.put("lastDonation",lastDonation);
 			
 				return hashMap	;
+	}
+
+
+	public User updatedUserProfile(String id, MultipartFile imgUrl) {
+		// TODO Auto-generated method stub
+		   Optional<User>  obj = repository.findById(id);
+	     if ((obj.get() != null  && obj.get().getImgUrl() ==null) &&  !imgUrl.isEmpty()) {
+	            try {
+	                Utils.saveImage(imgUrl, pathUser,
+	                        "");
+	                obj.get().setImgUrl( Utils.noSpecialCharacters(imgUrl.getOriginalFilename()));
+	                repository.save(obj.get());
+	            } catch (Exception e) {
+	                logger.error("user Exception: "
+	                        + e.getMessage());
+
+	            }
+	        }
+	     else if((obj.get().getImgUrl() !=null) &&!imgUrl.isEmpty() ) {
+	    	    try {
+	                Utils.saveImage(imgUrl, pathUser,
+	                        "");
+	                obj.get().setImgUrl( Utils.noSpecialCharacters(imgUrl.getOriginalFilename()));
+	                repository.save(obj.get());
+	            } catch (Exception e) {
+	                logger.error("user Exception: "
+	                        + e.getMessage());
+
+	            } 
+	     }
+		return obj.get();
 	}
 }

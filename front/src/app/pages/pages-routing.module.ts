@@ -9,7 +9,7 @@ import { AccountComponent } from './account/account.component';
 import { HomeOneComponent } from "../home/home-one/home-one.component";
 import { ProdComponent } from "./prod/prod.component";
 import { BlogDetailsComponent } from "./blog-details/blog-details.component";
-
+import { BlogNoSideComponent } from './blog-no-side/blog-no-side.component';
 const routes: Routes = [
 
   {
@@ -33,6 +33,12 @@ const routes: Routes = [
     title: "blog details",
     path: "blog-details/:id"
   },
+  {
+    component: BlogNoSideComponent,
+    title: "blog",
+    path: "blog"
+  },
+
   {
     path: 'home',
     component: HomeOneComponent,

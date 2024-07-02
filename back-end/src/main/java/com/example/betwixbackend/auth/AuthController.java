@@ -2,9 +2,14 @@ package com.example.betwixbackend.auth;
 
 import com.example.betwixbackend.dto.AuthRequest;
 import com.example.betwixbackend.dto.AuthResponse;
+import com.example.betwixbackend.dto.ContactMsg;
 import com.example.betwixbackend.dto.RegisterRequest;
+import com.example.betwixbackend.service.MailSendService;
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -22,6 +27,10 @@ import java.util.Map;
 public class AuthController {
     private final AuthService service;
 
+
+	@Autowired
+	MailSendService mailSendService;
+	
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest request) {
         try {
@@ -49,4 +58,12 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body((AuthResponse) errorResponse);
         }
     }
+    
+	@PostMapping(value="/sendContactForm")
+	public ResponseEntity<?> sendContactForm(@RequestBody ContactMsg contactmsg) {
+		
+		
+		var resultemail =  mailSendService.sendMsg(contactmsg.getEmail() ,contactmsg.getMessage() ,contactmsg.getName() )	;
+		  return ResponseEntity.status(HttpStatus.ACCEPTED).body(Map.of("status", true,"msg",resultemail));
+}
 }

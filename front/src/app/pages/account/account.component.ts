@@ -16,11 +16,14 @@ export class AccountComponent implements OnInit {
   uploadProgress: number | undefined;
   imgUrl: string = "";
   listOrder: any = []
+  formData: FormData = new FormData();
+
   currentUser: any = null;
   listReclamation: any = [];
   listPayement: any = [];
   public changepassForm!: FormGroup;
   public reclamationForm!: FormGroup;
+  imagUser = "http://localhost:8081/imageUser/"
   constructor(private uploadFileService: UploadFileService, private authentificationService: AuthentificationService,
     private paymentService: PaymentService,
     private router: Router,
@@ -82,7 +85,10 @@ export class AccountComponent implements OnInit {
   }
   uploadFile(): void {
     if (this.selectedFile) {
-      this.uploadFileService.uploadFile(this.selectedFile)
+      let idUser = localStorage.getItem("userId");
+
+
+      this.uploadFileService.uploadFile(this.formData, idUser)
         .subscribe(progress => {
           this.uploadProgress = progress;
           if (progress === 100) {
@@ -92,6 +98,22 @@ export class AccountComponent implements OnInit {
         });
     }
   }
+  handleFileInput(event: any) {
+    const file = event.target.files[0];
+    const files: FileList = event.target.files;
+    this.formData.append('imgUrl', file);
+    if (files.length > 0) {
+      this.selectedFile = files[0];
+      // You can also set the file name in the form control if needed
+
+      this.uploadFileService.readFile(this.selectedFile).subscribe(res => {
+        console.log("res", res)
+        this.currentUser.img = res
+        this.currentUser.imgUrl = null
+      })
+    }
+  }
+
   get confirmpassword() { return this.changepassForm.get('confirmpassword') }
   get password() { return this.changepassForm.get('password') }
   get description() { return this.changepassForm.get('description') }

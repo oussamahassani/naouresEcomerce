@@ -13,7 +13,8 @@
             <tr>
               <th scope="col">Image</th>
               <th scope="col">Title</th>
-              <th scope="col">Date de naissance</th>
+              <th scope="col">Date Creation</th>
+              <th scope="col"></th>
             </tr>
           <tbody>
             <tr
@@ -23,9 +24,11 @@
                   width="64" />
               </td>
               <td>{{ user.title }}</td>
-              <td>{{ formatDate(user.createdDate) }}</td>
+              <td>{{ formatDate(user.date) }}</td>
 
-
+              <td> <button (click)="delete(user.id)" class="btn btn-danger" style="margin-left: 10px;">
+                  <i class="fas fa-trash"></i>
+                </button></td>
           </tbody>
         </table>
       </div>

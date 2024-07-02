@@ -32,7 +32,9 @@ export class AuthentificationService {
     return this.http.post<AuthResponse>(`${this.baseUrl}/users/updatePassword/${iduser}`, { password: password });
   }
 
-
+  contactUs(data: any) {
+    return this.http.post<any>(`${this.baseUrl}/auth/sendContactForm`, data);
+  }
 
 
 }

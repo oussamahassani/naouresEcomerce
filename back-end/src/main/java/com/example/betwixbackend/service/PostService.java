@@ -41,7 +41,7 @@ public class PostService
 	
 
 	
-	public Post findById(Long id)
+	public Post findById(String id)
 	{
 		Optional<Post>  findedPost= this.postRepository.findById(id) ;
 		return findedPost.get();
@@ -52,7 +52,7 @@ public class PostService
 	
 
 	@Transactional
-	public void deleteById(Long id)
+	public void deleteById(String id)
 	{
 		
 		

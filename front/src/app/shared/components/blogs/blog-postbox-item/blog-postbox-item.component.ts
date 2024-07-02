@@ -10,7 +10,7 @@ export class BlogPostboxItemComponent {
   @Input() blog!: IBlogType;
   @Input() cls?: string;
   @Input() title_cls: boolean = true;
-
+ imageblog = 'http://localhost:8081/imageUser/'
   getClass() {
     let dynamicClass = '';
     if (this.cls) {

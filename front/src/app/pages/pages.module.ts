@@ -5,10 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { BlogComponent } from './blog/blog.component';
-import { BlogLeftSideComponent } from './blog-left-side/blog-left-side.component';
 import { BlogNoSideComponent } from './blog-no-side/blog-no-side.component';
-import { BlogTwoColComponent } from './blog-two-col/blog-two-col.component';
-import { BlogThreeColComponent } from './blog-three-col/blog-three-col.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { BlogDynamicDetailsComponent } from './blog-dynamic-details/blog-dynamic-details.component';
 import { LoginComponent } from './login/login.component';
@@ -17,9 +14,9 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ContactComponent } from './contact/contact.component';
 import { AccountComponent } from './account/account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import {AuthentificationService} from "./services/auth/authentification.service";
-import {HttpClientModule} from "@angular/common/http";
-import {UploadFileService} from "./account/service/upload-file.service";
+import { AuthentificationService } from "./services/auth/authentification.service";
+import { HttpClientModule } from "@angular/common/http";
+import { UploadFileService } from "./account/service/upload-file.service";
 import { ProdComponent } from './prod/prod.component';
 import { ProductDetailsComponentComponent } from './product-details-component/product-details-component.component';
 import { CategoryProductsComponent } from './category-products/category-products.component';
@@ -27,8 +24,8 @@ import { PaymentComponent } from './payment/payment.component';
 import { SuccessComponent } from './payment/success/success.component';
 import { FailedComponent } from './payment/failed/failed.component';
 import { UserSubscriptionsComponent } from './user-subscriptions/user-subscriptions.component';
-import {MatDialogModule} from "@angular/material/dialog";
-import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 //import { RoueComponent } from './roue/roue.component';
 //import { WheelSpinComponentComponent } from './wheel-spin-component/wheel-spin-component.component';
 //import { SpinthewheelComponent } from './spinthewheel/spinthewheel.component';
@@ -38,10 +35,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 @NgModule({
   declarations: [
     BlogComponent,
-    BlogLeftSideComponent,
     BlogNoSideComponent,
-    BlogTwoColComponent,
-    BlogThreeColComponent,
     BlogDetailsComponent,
     BlogDynamicDetailsComponent,
     LoginComponent,
@@ -57,20 +51,20 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     SuccessComponent,
     FailedComponent,
     UserSubscriptionsComponent,
- //   RoueComponent,
-   // WheelSpinComponentComponent,
-   // SpinthewheelComponent,
+    //   RoueComponent,
+    // WheelSpinComponentComponent,
+    // SpinthewheelComponent,
   ],
-    imports: [
-        CommonModule,
-        PagesRoutingModule,
-        SharedModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        MatDialogModule,
-        MatProgressBarModule
-    ],
-  providers:[AuthentificationService , UploadFileService]
+  imports: [
+    CommonModule,
+    PagesRoutingModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatDialogModule,
+    MatProgressBarModule
+  ],
+  providers: [AuthentificationService, UploadFileService]
 })
 export class PagesModule { }

@@ -66,6 +66,17 @@ export class ArticleComponent {
     this.collection();
   }
 
-
+  delete(id: any) {
+    var res = confirm("Êtes-vous sûr de vouloir supprimer?");
+    if (res) {
+      this.postService.deletePost(id).subscribe((res: any) => {
+        console.log(res)
+        this.postService.getAllPost().subscribe((res: any) => {
+          this.collection = res
+        })
+      }
+      )
+    }
+  }
 
 }
