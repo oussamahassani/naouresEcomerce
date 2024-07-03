@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { ProduitService } from "../../shared/services/produit.service";
+import { AuthentificationService } from "../../pages/services/auth/authentification.service"
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-prod',
@@ -16,18 +18,25 @@ export class ProdComponent implements OnInit {
   pageSize = 3;
   pageSizes = [3, 6, 9];
   title = '';
-
+  donateProduct = 0;
+  selectedProduct: any;
   collection: any = [];
+  userconnected: any;
 
   constructor(
+    private authService: AuthentificationService,
     private productService: ProduitService,
     private router: Router,
+    private toastrService: ToastrService,
   ) { }
 
   ngOnInit(): void {
     this.getAllProduct();
+    let userId = localStorage.getItem("userId");
+    this.authService.getUserCoonected(userId).subscribe((res: any) => {
+      this.userconnected = res;
+    })
   }
-
   getAllProduct() {
     this.productService.getallProduitList().subscribe((res: any) => {
       console.log(res);
@@ -42,12 +51,34 @@ export class ProdComponent implements OnInit {
   }
 
   Details(id: number) {
-    this.router.navigateByUrl(`/products-details/${id}`);
+    this.router.navigateByUrl(`/home/products-details/${id}`);
   }
+  donate() {
+    let userId = localStorage.getItem("userId");
+    let obj = {
+      produit: this.selectedProduct.id,
+      price: this.donateProduct,
+      userId: userId
+    }
+    if (this.userconnected.sold >= this.donateProduct) {
+      this.productService.addNewPayement(obj).subscribe((res: any) => {
+        console.log(res)
+        this.toastrService.success(`donation success`);
+      })
+    }
+    else {
+      alert("sold insufissent")
+    }
 
+  }
   increaseQuantity(product: any) {
-    if (product.quantity < 100) {
-      product.quantity += 10; // Augmentez la valeur de la quantité par 10, ajustez selon vos besoins
+    this.selectedProduct = product;
+    if (product.price >= this.donateProduct + 1) {
+
+      console.log(100 / product.price)
+      product.donate = (100 / product.price) * (this.donateProduct + 1);
+      console.log((100 / product.price) * (this.donateProduct + 1))
+      this.donateProduct += 1; // Augmentez la valeur de la quantité par 10, ajustez selon vos besoins
     }
   }
 }

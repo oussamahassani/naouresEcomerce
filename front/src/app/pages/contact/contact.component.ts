@@ -24,17 +24,17 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.contactUs(this.contactForm.value).subscribe((response: any) => {
-      next: (data: any) => {
+
+    this.authService.contactUs(this.contactForm.value).subscribe(
+      (data: any) => {
         this.message = data;
+        this.toastrService.success(`Email send `);
 
-        //   this.router.navigate(['/home'])
-      }
-    },
-
+      },
       (error) => {
-        this.toastrService.success(`cannot send your email, adrese not valid `);
+        this.toastrService.error(`Cannot send your email, address not valid`);
+      }
+    );
 
-      })
   }
 }

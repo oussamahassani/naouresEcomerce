@@ -36,6 +36,11 @@
                     <i class="ion-ios-search-strong"></i> Search
                   </a>
                 </li>
+                <li *ngIf="isConnected">
+                  <a href="pages/prod" class="search-toggle cursor-pointer">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Product
+                  </a>
+                </li>
                 <li>
                   <a href="pages/blog" class="search-toggle cursor-pointer">
                     <i class="fa fa-rss"></i> Blog
@@ -54,7 +59,7 @@
                   <!-- mini cart end -->
                 </li>
                 <li>
-                  nombre de point : {{currentUser.sold}}
+                  Nombre de point : {{currentUser.sold}}
                 </li>
                 <li *ngIf="isConnected"> <a class="cursor-pointer"><i class="far fa-bars"></i></a>
                   <!-- extra info start -->

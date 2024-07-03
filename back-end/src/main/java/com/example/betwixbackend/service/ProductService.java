@@ -46,6 +46,8 @@ public class ProductService {
     @Autowired
     private ProductRepository repository;
 
+    @Autowired
+	MailSendService mailSendService;
     
     @Autowired
     private UserRepository userRepository;
@@ -164,9 +166,13 @@ public class ProductService {
 		// TODO Auto-generated method stub
 		Product myproduct = this.findById(produit.getIdProduct());
 		if(myproduct != null) {
+			Optional<User> userPayement = userRepository.findById(produit.getUserId());
+			if(userPayement.get() != null) {
+			var resultemail =  mailSendService.sendMsg(userPayement.get().getEmail() ,"vous avez gagner  le produit de reference "+myproduct.getId() + " titre de produit " + myproduct.getName() ,userPayement.get().getFirstName() )	;
 			myproduct.setIdUser(produit.getUserId());
 			myproduct.setIsDone(true);
 			repository.save(myproduct);
+			}
 		}
 		return myproduct;
 	}

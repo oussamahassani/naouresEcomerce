@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { ProduitService } from "../../shared/services/produit.service";
 import { AuthentificationService } from "../../pages/services/auth/authentification.service"
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-product-details-component',
   templateUrl: './product-details-component.component.html',
@@ -17,7 +19,8 @@ export class ProductDetailsComponentComponent implements OnInit {
     private produitService: ProduitService,
     private router: Router,
     private route: ActivatedRoute,
-    private authService: AuthentificationService
+    private authService: AuthentificationService,
+    private toastrService: ToastrService
 
   ) { }
   ngOnInit(): void {
@@ -32,7 +35,7 @@ export class ProductDetailsComponentComponent implements OnInit {
     })
   }
   list() {
-    this.router.navigate(["products"]);
+    this.router.navigate(["/pages/prod"]);
 
   }
   donate() {
@@ -45,6 +48,10 @@ export class ProductDetailsComponentComponent implements OnInit {
     if (this.userconnected.sold >= this.donatePrice) {
       this.produitService.addNewPayement(obj).subscribe((res: any) => {
         console.log(res)
+        this.toastrService.success(`donation success`);
+        this.produitService.getOneProduit(this.produitId).subscribe((produit: any) => {
+          this.produit = produit
+        });
       })
     }
     else {
