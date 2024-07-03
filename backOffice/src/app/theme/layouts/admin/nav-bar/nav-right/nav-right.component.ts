@@ -61,7 +61,7 @@ export class NavRightComponent implements OnInit {
       if (res.id) {
         this.userService.getNotif(res.id).subscribe(res => {
           this.notifList = res;
-          this.notifNotRead = this.notifList.filter(el => el.isRead = false);
+          this.notifNotRead = this.notifList.filter(el => el.isRead == false);
         })
       }
     })

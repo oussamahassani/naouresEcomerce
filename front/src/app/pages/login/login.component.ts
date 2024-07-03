@@ -55,7 +55,7 @@ export class LoginComponent {
         this.router.navigate(['/pages/home']);
       }, error => {
         console.error("err", error)
-        this.toastrService.error(`login ou mot de passe  incorrect`);
+        this.toastrService.error(error.error.message);
 
       }, () => {
         this.loginForm.reset();

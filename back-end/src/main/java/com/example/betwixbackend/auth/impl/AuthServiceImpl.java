@@ -90,7 +90,10 @@ public class AuthServiceImpl implements AuthService {
             );
         } catch(Exception e)
         {
-            System.out.println("bad credentials in " + e);
+            System.out.println("bad credentials in " + e.getMessage());
+            if(e.getMessage().equals("User is disabled"))
+                throw new InvalidCredentialsException("User is disabled" , ErrorCodes.USER_BAD_CREDENTIALS);
+            else
            throw new InvalidCredentialsException("Login / et ou mot de passe incorrect" , ErrorCodes.USER_BAD_CREDENTIALS);
         }
 
