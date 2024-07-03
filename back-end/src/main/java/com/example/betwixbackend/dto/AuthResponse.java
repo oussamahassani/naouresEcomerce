@@ -13,5 +13,6 @@ public class AuthResponse {
     private String role ;
     private String userId ;
     private String nameUser ;
+    private Boolean enabled ;
 
 }

@@ -22,4 +22,15 @@ export class AdminComponent {
       this.navCollapsedMob = !this.navCollapsedMob;
     }
   }
+  dateNow() {
+
+
+    return new Date().toLocaleDateString('en-GB', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+
+  }
 }

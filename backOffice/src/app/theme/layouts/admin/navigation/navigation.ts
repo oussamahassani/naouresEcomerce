@@ -36,7 +36,7 @@ export const NavigationItemsAdmin: NavigationItem[] = [
   },
   {
     id: 'elements',
-    title: 'UI Components',
+    title: 'Pages',
     type: 'group',
     icon: 'icon-navigation',
     children: [
@@ -86,7 +86,7 @@ export const NavigationItems: NavigationItem[] = [
   },
   {
     id: 'elements',
-    title: 'UI Components',
+    title: 'Pages',
     type: 'group',
     icon: 'icon-navigation',
     children: [

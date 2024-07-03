@@ -26,6 +26,8 @@ import { FailedComponent } from './payment/failed/failed.component';
 import { UserSubscriptionsComponent } from './user-subscriptions/user-subscriptions.component';
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { RechercheProduit } from "./RechercheProduit/recherche-produit.component"
+
 //import { RoueComponent } from './roue/roue.component';
 //import { WheelSpinComponentComponent } from './wheel-spin-component/wheel-spin-component.component';
 //import { SpinthewheelComponent } from './spinthewheel/spinthewheel.component';
@@ -50,6 +52,7 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
     //PaymentComponent,
     SuccessComponent,
     FailedComponent,
+    RechercheProduit,
     UserSubscriptionsComponent,
     //   RoueComponent,
     // WheelSpinComponentComponent,

@@ -9,7 +9,7 @@ import { PaymentComponent } from "./pages/payment/payment.component";
 import { SuccessComponent } from "./pages/payment/success/success.component";
 import { FailedComponent } from "./pages/payment/failed/failed.component";
 import { UserSubscriptionsComponent } from "./pages/user-subscriptions/user-subscriptions.component";
-
+import { RechercheProduit } from "./pages/RechercheProduit/recherche-produit.component"
 const routes: Routes = [
   {
     path: '',
@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'pages',
     loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
     // canActivate: [authGuard]
+  },
+  {
+    path: 'shop/search',
+    component: RechercheProduit
   },
   {
     path: 'home/products-details/:id',

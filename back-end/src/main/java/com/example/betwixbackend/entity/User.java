@@ -37,7 +37,7 @@ public class User implements UserDetails  {
     private String email;
     private String password;
     private String imgUrl;
-    private boolean enabled;
+    private Boolean enabled;
     private String sold = "0" ;
     //private Role role;
 
@@ -85,7 +85,7 @@ public class User implements UserDetails  {
         return true;
     }
 
-    @Override
+  @Override
     public boolean isEnabled() {
 
 

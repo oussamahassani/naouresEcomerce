@@ -90,7 +90,7 @@ public class AuthServiceImpl implements AuthService {
             );
         } catch(Exception e)
         {
-            System.out.println("bad credentials in ");
+            System.out.println("bad credentials in " + e);
            throw new InvalidCredentialsException("Login / et ou mot de passe incorrect" , ErrorCodes.USER_BAD_CREDENTIALS);
         }
 
@@ -102,6 +102,7 @@ public class AuthServiceImpl implements AuthService {
                         .token(jwt)
                         .role(user.getRole().name())
                         .userId(user.getId())
+                        .enabled(user.isEnabled())
                         .nameUser(user.getFirstName())
                         .build()
         ) ;

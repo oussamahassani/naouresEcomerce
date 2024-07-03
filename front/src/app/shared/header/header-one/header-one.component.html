@@ -58,7 +58,7 @@
                   <app-mini-cart></app-mini-cart>
                   <!-- mini cart end -->
                 </li>
-                <li>
+                <li *ngIf="currentUser">
                   Nombre de point : {{currentUser.sold}}
                 </li>
                 <li *ngIf="isConnected"> <a class="cursor-pointer"><i class="far fa-bars"></i></a>

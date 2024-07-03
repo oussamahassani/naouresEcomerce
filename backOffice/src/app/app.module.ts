@@ -7,6 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ToastrModule } from 'ngx-toastr';
 
 
 // project import
@@ -104,6 +105,12 @@ import { ProdactePayedComponent } from './product/prodactePayed/prodactePayed.co
     NgxPaginationModule,
     HttpClientModule,
     FontAwesomeModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      progressBar: false,
+      enableHtml: true,
+      positionClass: 'toast-top-center'
+    }),
     NgbModule, MatTable, MatCardModule, MatToolbar, MatCardContent, MatCard
 
   ],
