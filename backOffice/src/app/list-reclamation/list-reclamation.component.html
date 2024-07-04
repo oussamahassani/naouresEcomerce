@@ -19,6 +19,9 @@
             <table class="table table-striped table-bordered">
               <thead>
                 <tr>
+                  <th scope="col">Cree par</th>
+                  <th scope="col">Telephone Createur </th>
+
                   <th scope="col">Description</th>
                   <th scope="col">Date de Création</th>
                   <th scope="col">Traité</th>
@@ -27,12 +30,15 @@
               </thead>
               <tbody>
                 <tr *ngFor="let element of reclamations">
+                  <td>{{ element.user ? element.user.firstName +" "+element.user.lastName :"" }}</td>
+                  <td>{{ element.user? element.user.tel : "" }}</td>
                   <td>{{ element.description }}</td>
                   <td>{{ element.createdDate | date }}</td>
                   <td>{{ element.treated ? 'Oui' : 'Non' }}</td>
                   <td>{{ getTimeElapsed(element.createdDate) }}</td>
-                  <td *ngIf="!element.treated"> <i type="button" (click)="update(element)"
-                      class="fa fa-plus-circle "></i>
+                  <td *ngIf="!element.treated"> <i type="button" (click)="update(element)" class="fa fa-check "></i>
+
+                    <i type="button" class="fa fa-times ml-3" (click)="remove(element)" aria-hidden="true"></i>
                   </td>
                 </tr>
               </tbody>

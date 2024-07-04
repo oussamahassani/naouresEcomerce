@@ -18,4 +18,7 @@ export class ReclamationService {
   public updateReclamations(obj: any) {
     return this.http.put(`${this.apiUrl}/reclamations/${obj.id}`, obj);
   }
+  public removeReclamations(obj: any) {
+    return this.http.delete(`${this.apiUrl}/reclamations/${obj.id}`, obj);
+  }
 }

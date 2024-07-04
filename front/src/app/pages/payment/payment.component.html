@@ -71,13 +71,32 @@
 
 
     <!-- Payment Section -->
-    <div class="vh-100">
+    <!--  <div class="vh-100">
       <div>
         <div class="p-5 ">
           <label for="amount">Amount:</label>
           <input type="number" name="amount" id="amount" [(ngModel)]="amount">
         </div>
         <button class="btn btn-lg" (click)="initializePayment()">Pay</button>
+      </div>
+    </div>-->
+    <div class="row custom-row-10">
+      <div *ngFor="let item of pack" class="col-xl-3 col-lg-3 col-md-6 col-sm-6 custom-col-10">
+        <div class="category-item">
+          <img [src]="urlImagePack + item.image" alt="pack Image" class="category-image" width="250px" height="200px" />
+          <div class="category-info">
+            <h5 class="category-title">{{ item.namePack }}</h5>
+            <p class="category-description">{{ item.description }}</p>
+            <p class="category-price">$ {{ item.price }}</p>
+            <div class="progress-container">
+
+
+            </div>
+            <button class="btn btn-lg" (click)="Payment(item)">Acheter</button>
+
+
+          </div>
+        </div>
       </div>
     </div>
   </main>

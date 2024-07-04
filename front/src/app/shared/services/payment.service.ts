@@ -70,4 +70,12 @@ export class PaymentService {
     };
     return this.http.post<any>(apiUrl, cardData, httpOptions);
   }
+  getAllPack() {
+    return this.http.get<any>(`${UrlBakend}/pack`);
+  }
+
+  getGainProduitByUser(idUser: any) {
+    return this.http.get<any>(`${UrlBakend}/products/getGainProduitByUser/${idUser}`);
+
+  }
 }

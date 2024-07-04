@@ -151,6 +151,10 @@ public class ProductService {
 		// TODO Auto-generated method stub
 		return userPayementRepository.findByUserid(id);
 	}
+	public List<Product> getGainProduitByUser(String id) {
+		// TODO Auto-generated method stub
+		return repository.findByIdUser(id);
+	}
 
 	public List<Product> findAllProductsPayed() {
 		// TODO Auto-generated method stub

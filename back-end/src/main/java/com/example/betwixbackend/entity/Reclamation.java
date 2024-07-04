@@ -34,6 +34,7 @@ public class Reclamation {
 	private Date createdDate;
 	
     private String idUser;
+    private User user ;
     private boolean treated; //traiter ou non par l'admin
 
     private LocalDateTime dateModification;
