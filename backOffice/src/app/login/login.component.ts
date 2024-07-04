@@ -76,7 +76,7 @@ export class LoginComponent {
           // Redirect to login page or show success message
         }, error => {
           // Handle error
-          this.error = '"Credentials are invalid or the user is disabled. Please contact your administrator or verify your credentials';
+          this.error = error.error.message || '"Credentials are invalid or the user is disabled. Please contact your administrator or verify your credentials';
         })
     } else {
       // Handle invalid form submission

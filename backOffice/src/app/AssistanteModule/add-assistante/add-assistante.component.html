@@ -55,8 +55,8 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label class="form-control-label">tel </label>
-                <input type="text" class="form-control" formControlName="tel" required minlength="3" maxlength="20" />
+                <label class="form-control-label">Tel </label>
+                <input type="number" class="form-control" formControlName="tel" required minlength="3" maxlength="20" />
                 <div class="invalid-feedback"
                   *ngIf="AssistanteForm.get('tel').invalid && AssistanteForm.get('tel').touched">
                   Le tel est obligatoire (entre 3 et 20 caractères)
@@ -65,7 +65,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label class="form-control-label">genre </label>
+                <label class="form-control-label">Genre </label>
                 <input type="text" class="form-control" formControlName="genre" required minlength="3" maxlength="20" />
                 <div class="invalid-feedback"
                   *ngIf="AssistanteForm.get('genre').invalid && AssistanteForm.get('genre').touched">
@@ -75,8 +75,8 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label class="form-control-label">brithday </label>
-                <input type="text" class="form-control" formControlName="brithday" required minlength="3"
+                <label class="form-control-label">Brithday </label>
+                <input type="date" class="form-control" formControlName="brithday" required minlength="3"
                   maxlength="20" />
                 <div class="invalid-feedback"
                   *ngIf="AssistanteForm.get('brithday').invalid && AssistanteForm.get('brithday').touched">
@@ -86,7 +86,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label class="form-control-label">email </label>
+                <label class="form-control-label">Email </label>
                 <input type="text" class="form-control" formControlName="email" required minlength="3" maxlength="20" />
                 <div class="invalid-feedback"
                   *ngIf="AssistanteForm.get('email').invalid && AssistanteForm.get('email').touched">
@@ -96,7 +96,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label class="form-control-label">password </label>
+                <label class="form-control-label">Password </label>
                 <input type="text" class="form-control" formControlName="password" required minlength="3"
                   maxlength="20" />
                 <div class="invalid-feedback"
@@ -123,7 +123,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label class="form-control-label">enabled</label>
+                <label class="form-control-label">Enabled</label>
                 <select class="form-control" formControlName="enabled" required>
                   <option value="true">enabled</option>
                   <option value="false">disabled</option>
@@ -131,7 +131,7 @@
                 </select>
                 <div class="invalid-feedback"
                   *ngIf="AssistanteForm.get('enabled').invalid && AssistanteForm.get('enabled').touched">
-                  Le enabledest obligatoire
+                  Le enabled est obligatoire
                 </div>
               </div>
             </div>
