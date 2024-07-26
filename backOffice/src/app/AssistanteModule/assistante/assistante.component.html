@@ -17,36 +17,42 @@
       <div class="table-responsive">
         <table class="table align-items-center table-flush">
           <thead class="thead-light">
-          <tr>
-            <th scope="col">image</th>
-            <th scope="col">Prénom</th>
-            <th scope="col">Nom</th>
-            <th scope="col">email</th>
-            <th scope="col">telephone</th>
-            <th scope="col">Genre</th>
+            <tr>
+              <th scope="col">image</th>
+              <th scope="col">Prénom</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Email</th>
+              <th scope="col">Telephone</th>
+              <th scope="col">Genre</th>
 
-            <th scope="col">Date de naissance</th>
-          </tr>
-          <tbody> <tr *ngFor="let user of collection | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: count}">
-          <td>
-            <img
-              src="{{urlImageUser + user.imgUrl}}"
-              alt="Image placeholder"
-              class="mr-3 rounded-circle"
-              width="64"
-            />
-           </td>
-          <td>{{ user.firstName }}</td>
-            <td>{{ user.lastName  }}</td>
-            <td>{{ user.email  }}</td>
-            <td>{{ user.tel  }}</td>
-            <td>{{ user.genre  }}</td>
-
+              <th scope="col">Date de naissance</th>
+              <th scope="col">Status</th>
+            </tr>
+          <tbody>
+            <tr
+              *ngFor="let user of collection | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: count}">
+              <td>
+                <img src="{{urlImageUser + user.imgUrl}}" alt="Image placeholder" class="mr-3 rounded-circle"
+                  width="64" />
+              </td>
+              <td>{{ user.firstName }}</td>
+              <td>{{ user.lastName }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.tel }}</td>
+              <td>{{ user.genre }}</td>
+              <td>{{ user.brithday }}</td>
+              <td>{{ user.enabled ? "enabled" : "desabled" }}</td>
+              <td><i class="fa-solid fa-pen-to-square" (click)="currentUserSelected(user)" data-toggle="modal"
+                  data-target="#exampleModal"></i></td>
           </tbody>
-        </table></div></div></div>
+        </table>
+      </div>
+    </div>
+  </div>
   <div class="row justify-content-center">
     <div class="col-md-4">
-      <pagination-controls previousLabel="Préc" nextLabel="Suiv" [responsive]="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+      <pagination-controls previousLabel="Préc" nextLabel="Suiv" [responsive]="true"
+        (pageChange)="handlePageChange($event)"></pagination-controls>
     </div>
     <div class="col-md-4">
       <div class="form-group">
@@ -54,6 +60,30 @@
         <select class="form-control" id="itemsPerPage" (change)="handlePageSizeChange($event)">
           <option *ngFor="let size of pageSizes">{{ size }}</option>
         </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <select [(ngModel)]="statutcurrentUser">
+          <option value="">select user stauts</option>
+          <option value="true">enabled</option>
+          <option value="false">desabled</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="myModalButton">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateCurrentUser()">Save changes</button>
       </div>
     </div>
   </div>

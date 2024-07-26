@@ -26,4 +26,6 @@ public interface ProductRepository extends  MongoRepository<Product, Long>{
     @Aggregation("{ $group: { _id: { year: { $year: '$createdDate' }, month: { $month: '$createdDate' } }, count: { $sum: 1 } } }")
     List<CountByYearAndMonthDTO> countByYearAndMonth();
 	
+    List<Product> findByIdUser(String id);
+	
 }

@@ -17,7 +17,7 @@ export class AccountComponent implements OnInit {
   imgUrl: string = "";
   listOrder: any = []
   formData: FormData = new FormData();
-
+  listGain: any = [];
   currentUser: any = null;
   listReclamation: any = [];
   listPayement: any = [];
@@ -43,9 +43,15 @@ export class AccountComponent implements OnInit {
     this.getCurrentOrder()
     this.getlistReclamation()
     this.getListePeyement()
+    this.getGainProductByUser()
 
   }
-
+  getGainProductByUser() {
+    let idUser = localStorage.getItem("userId");
+    this.paymentService.getGainProduitByUser(idUser).subscribe(res => {
+      this.listGain = res;
+    })
+  }
   getlistReclamation() {
     let idUser = localStorage.getItem("userId");
     this.paymentService.getReclamationByCurrentUser(idUser).subscribe(res => {
@@ -137,6 +143,7 @@ export class AccountComponent implements OnInit {
     }
     this.paymentService.postNewReclamation(obj).subscribe(res => {
       this.toastrService.success(`reclamation  ajouter avec success`);
+      this.getlistReclamation()
     }
 
     )

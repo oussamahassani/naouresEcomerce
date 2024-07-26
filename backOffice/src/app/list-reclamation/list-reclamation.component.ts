@@ -45,6 +45,13 @@ export class ListReclamationComponent implements OnInit {
       this.getAllReclamation()
     })
   }
+  remove(obj: any) {
+    obj.treated = true;
+    this.reclamationService.removeReclamations(obj).subscribe(res => {
+      console.log("reclamtion traiter")
+      this.getAllReclamation()
+    })
+  }
   getTimeElapsed(dateCreation: string): string {
     const now = moment();
     const creationDate = moment(dateCreation);

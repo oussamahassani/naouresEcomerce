@@ -80,6 +80,11 @@ public class ProductController {
     	List<UserPayement>  updateProduit = service.getPayementProduit(id);
         return new ResponseEntity<>(updateProduit, HttpStatus.CREATED);
     }
+    @GetMapping(value = "/getGainProduitByUser/{id}")
+    public ResponseEntity<?> getGainProduitByUser(@PathVariable("id") String id) {
+    	List<Product>  updateProduit = service.getGainProduitByUser(id);
+        return new ResponseEntity<>(updateProduit, HttpStatus.CREATED);
+    }
     @GetMapping(value = "/getPayementByProduct/{id}")
     public ResponseEntity<?> getPayementProductByIdProduct(@PathVariable("id") String id) {
     	List<UserPayement>  updateProduit = service.getPayementProduitByIdProduct(id);

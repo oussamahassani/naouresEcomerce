@@ -1,7 +1,10 @@
 package com.example.betwixbackend.service;
 
 import com.example.betwixbackend.entity.Reclamation;
+import com.example.betwixbackend.entity.User;
 import com.example.betwixbackend.repository.ReclamationRepository;
+import com.example.betwixbackend.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +16,9 @@ import java.util.Optional;
 public class ReclamationService {
     @Autowired
     private ReclamationRepository reclamationRepository;
-
+    
+    @Autowired
+    private UserRepository userRepository;
     public List<Reclamation> findAll() {
         return reclamationRepository.findAll();
     }
@@ -27,6 +32,8 @@ public class ReclamationService {
         if (reclamation.getDateCreation() == null) {
             reclamation.setDateCreation(LocalDateTime.now());
         }*/
+    	Optional<User> userReclamtion = userRepository.findById(reclamation.getIdUser());
+    	reclamation.setUser(userReclamtion.get());
         return reclamationRepository.save(reclamation);
     }
 

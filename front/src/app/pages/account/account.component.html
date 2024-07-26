@@ -59,6 +59,9 @@
                 <button class="nav-link active" id="nav-account-tab" data-bs-toggle="tab" data-bs-target="#nav-account"
                   type="button" role="tab" aria-controls="nav-account" aria-selected="true"> <i class="fa fa-user"></i>
                   My Account </button>
+                <button class="nav-link" id="nav-gain-tab" data-bs-toggle="tab" data-bs-target="#nav-gain" type="button"
+                  role="tab" aria-controls="nav-gain" aria-selected="true"> <i class="fa fa-gift"></i>
+                  My Gain </button>
                 <button class="nav-link" id="nav-historypayement-tab" data-bs-toggle="tab"
                   data-bs-target="#nav-historypayement" type="button" role="tab" aria-controls="nav-historypayement"
                   aria-selected="true"> <i class="fa fa-user"></i>
@@ -122,6 +125,34 @@
                 </div>
               </div>
 
+              <div class="tab-pane fade" id="nav-gain" role="tabpanel" aria-labelledby="nav-gain-tab">
+                <div class="order__info">
+                  <div class="order__info-top d-flex justify-content-between align-items-center">
+                    <h3 class="order__info-title">My gain</h3>
+
+                  </div>
+
+                  <div class="order__list white-bg table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col"> ID</th>
+                          <th scope="col">Produit name</th>
+                          <th scope="col">Produit description</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngIf="listGain.length >0">
+                        <tr *ngFor="let item of listGain; index as i">
+                          <td class="order__id">#{{i}}</td>
+                          <td>{{item.name}}DT</td>
+                          <td>{{item.description.substring(0,20)}}</td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
               <div class="tab-pane fade" id="nav-historypayement" role="tabpanel"
                 aria-labelledby="nav-historypayement-tab">
                 <div class="order__info">
