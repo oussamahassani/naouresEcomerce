@@ -27,10 +27,12 @@ export class CategoryProductsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getAllProduct();
+ 
     this.route.params.subscribe(params => {
+   //   this.getAllProduct(params['id']);
      this.productService.getCategoryProductsList(params['id']).subscribe(value => {
        console.log(value)
+       this.collection = value ;
      })
     })
 
@@ -38,7 +40,7 @@ export class CategoryProductsComponent implements OnInit {
   }
 
 
-  getAllProduct() {
+  getAllProduct(idCtegory:any) {
     this.productService.getallProduitList().subscribe((res:any) => {
       console.log(res)
       this.collection = res ;
